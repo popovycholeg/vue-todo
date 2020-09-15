@@ -1,4 +1,11 @@
 module.exports = {
+  html: {
+    void: "never",
+    normal: "always",
+    component: "always",
+  },
+  svg: "always",
+  math: "always",
   root: true,
   env: {
     // this section will be used to determine which APIs are available to us
@@ -20,10 +27,5 @@ module.exports = {
     // we should always disable console logs and debugging in production
     "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
-  },
-  html: {
-    void: "always",
-    normal: "never",
-    component: "any",
   },
 };
