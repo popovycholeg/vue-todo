@@ -1,10 +1,15 @@
 <template>
   <div id="app">
     <h1>Todo Vue app</h1>
+    <AddTodo />
+    <Todos v-bind:todos="todos" />
   </div>
 </template>
 
 <script>
+import AddTodo from "./components/AddTodo";
+import Todos from "./components/Todos";
+
 export default {
   name: "App",
   data() {
@@ -38,6 +43,7 @@ export default {
       ],
     };
   },
+  components: { AddTodo, Todos },
 };
 </script>
 
