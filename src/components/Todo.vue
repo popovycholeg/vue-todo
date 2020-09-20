@@ -10,8 +10,7 @@ export default {
   props: ["todo"],
   methods: {
     markComplete() {
-      this.$emit("mark-comleted", this.todo.completed);
-      // this.todo.completed = !this.todo.completed;
+      this.$emit("mark-comleted", this.todo.id);
     },
   },
 };

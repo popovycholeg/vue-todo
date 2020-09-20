@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <h1>Todo Vue app</h1>
-    <AddTodo :todos="todos" v-on:add-todo="addTodo" />
+    <AddTodo :todos="todos" @add-todo="addTodo" />
     <Todos
       :todos="todos"
-      v-on:mark-comleted="markCompleted"
-      v-on:delete-todo="deleteTodo"
+      @mark-comleted="markCompleted"
+      @delete-todo="deleteTodo"
     />
   </div>
 </template>
@@ -16,6 +16,7 @@ import Todos from "./components/Todos";
 
 export default {
   name: "App",
+  components: { AddTodo, Todos },
   data() {
     return {
       todos: [
@@ -47,7 +48,7 @@ export default {
       ],
     };
   },
-  components: { AddTodo, Todos },
+
   methods: {
     addTodo(newTodoObj) {
       this.todos = [...this.todos, newTodoObj];
