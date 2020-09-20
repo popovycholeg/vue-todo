@@ -53,11 +53,15 @@ export default {
       this.todos = [...this.todos, newTodoObj];
     },
     markCompleted(id) {
-      this.todos = this.todos.map((item) => {
-        if (item.id === id) {
-          return { ...item, completed: !item.completed };
-        }
+      this.todos = this.todos.map((todo) => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            completed: !todo.completed,
+          };
+        } else return todo;
       });
+      console.log(id);
     },
     deleteTodo(todoId) {
       this.todos = this.todos.filter((todo) => todo.id !== todoId);
