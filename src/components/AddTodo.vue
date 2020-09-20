@@ -1,19 +1,38 @@
 <template>
-  <input type="text" v-model="newTodo" id="addTodo" />
-  <label for="addTodo" class="addTodo">Add todo</label>
+  <div>
+    <form @submit="addTodo">
+      <input type="text" v-model="title" name="title" />
+      <button type="submit">Add</button>
+    </form>
+  </div>
 </template>
-
 <script>
 export default {
   name: "AddTodo",
   props: {
-    msg: String,
+    todos: {
+      type: Array,
+      required: true,
+      default: () => [],
+    },
+  },
+  data() {
+    return {
+      title: "",
+    };
+  },
+  methods: {
+    addTodo(e) {
+      e.preventDefault();
+      const newTodoObj = {
+        id: this.todos.length + 1,
+        title: this.title,
+        completed: false,
+      };
+      this.$emit("add-todo", newTodoObj);
+      this.title = "";
+    },
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.addTodo {
-  margin-left: 10px;
-}
-</style>
+<style scoped></style>

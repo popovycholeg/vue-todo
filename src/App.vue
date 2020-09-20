@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <h1>Todo Vue app</h1>
-    <AddTodo />
-    <Todos v-bind:todos="todos" />
+    <AddTodo :todos="todos" v-on:add-todo="addTodo" />
+    <Todos :todos="todos" />
   </div>
 </template>
 
@@ -44,6 +44,11 @@ export default {
     };
   },
   components: { AddTodo, Todos },
+  methods: {
+    addTodo(newTodoObj) {
+      this.todos = [...this.todos, newTodoObj];
+    },
+  },
 };
 </script>
 
