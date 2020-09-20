@@ -1,6 +1,7 @@
 <template>
   <div :class="{ completed: todo.completed }">
     <p @click="markComplete">{{ todo.title }}</p>
+    <button @click="$emit('delete-todo', todo.id)">Delete</button>
   </div>
 </template>
 <script>

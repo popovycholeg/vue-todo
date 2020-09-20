@@ -2,7 +2,11 @@
   <div id="app">
     <h1>Todo Vue app</h1>
     <AddTodo :todos="todos" v-on:add-todo="addTodo" />
-    <Todos :todos="todos" v-on:mark-comleted="markCompleted" />
+    <Todos
+      :todos="todos"
+      v-on:mark-comleted="markCompleted"
+      v-on:delete-todo="deleteTodo"
+    />
   </div>
 </template>
 
@@ -54,6 +58,9 @@ export default {
           return { ...item, completed: !item.completed };
         }
       });
+    },
+    deleteTodo(todoId) {
+      this.todos = this.todos.filter((todo) => todo.id !== todoId);
     },
   },
 };

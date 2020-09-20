@@ -2,10 +2,11 @@
   <div>
     <h2>Todos</h2>
     <ul>
-      <li :key="todo.id" v-for="todo in todos">
+      <li v-for="todo in todos" :key="todo.id">
         <Todo
-          v-bind:todo="todo"
-          v-on:mark-comleted="$emit('mark-comleted', todo.id)"
+          :todo="todo"
+          @mark-comleted="$emit('mark-comleted', todo.id)"
+          @delete-todo="$emit('delete-todo', todo.id)"
         />
       </li>
     </ul>
