@@ -2,7 +2,7 @@
   <div id="app">
     <h1>Todo Vue app</h1>
     <AddTodo :todos="todos" v-on:add-todo="addTodo" />
-    <Todos :todos="todos" />
+    <Todos :todos="todos" v-on:mark-comleted="markCompleted" />
   </div>
 </template>
 
@@ -18,7 +18,7 @@ export default {
         {
           id: 1,
           title: "Go workout",
-          completed: false,
+          completed: true,
         },
         {
           id: 2,
@@ -47,6 +47,13 @@ export default {
   methods: {
     addTodo(newTodoObj) {
       this.todos = [...this.todos, newTodoObj];
+    },
+    markCompleted(id) {
+      this.todos = this.todos.map((item) => {
+        if (item.id === id) {
+          return { ...item, completed: !item.completed };
+        }
+      });
     },
   },
 };

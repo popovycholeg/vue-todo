@@ -1,12 +1,22 @@
 <template>
-  <div>
-    <p>{{ todo.title }}</p>
+  <div :class="{ completed: todo.completed }">
+    <p @click="markComplete">{{ todo.title }}</p>
   </div>
 </template>
 <script>
 export default {
   name: "Todo",
   props: ["todo"],
+  methods: {
+    markComplete() {
+      this.$emit("mark-comleted", this.todo.completed);
+      // this.todo.completed = !this.todo.completed;
+    },
+  },
 };
 </script>
-<style scoped></style>
+<style scoped>
+.completed {
+  text-decoration: line-through;
+}
+</style>

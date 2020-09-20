@@ -3,7 +3,10 @@
     <h2>Todos</h2>
     <ul>
       <li :key="todo.id" v-for="todo in todos">
-        <Todo v-bind:todo="todo" />
+        <Todo
+          v-bind:todo="todo"
+          v-on:mark-comleted="$emit('mark-comleted', todo.id)"
+        />
       </li>
     </ul>
   </div>
