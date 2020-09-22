@@ -13,42 +13,25 @@
 <script>
 import AddTodo from "./components/AddTodo";
 import Todos from "./components/Todos";
+import axios from "axios";
 
 export default {
   name: "App",
   components: { AddTodo, Todos },
   data() {
     return {
-      todos: [
-        {
-          id: 1,
-          title: "Go workout",
-          completed: true,
-        },
-        {
-          id: 2,
-          title: "Do laundry",
-          completed: false,
-        },
-        {
-          id: 3,
-          title: "Cook food",
-          completed: false,
-        },
-        {
-          id: 4,
-          title: "Clean up room",
-          completed: false,
-        },
-        {
-          i: 5,
-          title: "Finish work",
-          completed: false,
-        },
-      ],
+      todos: [],
+      error: null,
     };
   },
-
+  async mounted() {
+    try {
+      const response = await axios.get("http://localhost:1337/todos");
+      this.todos = response.data;
+    } catch (error) {
+      this.error = error;
+    }
+  },
   methods: {
     addTodo(newTodoObj) {
       this.todos = [...this.todos, newTodoObj];
