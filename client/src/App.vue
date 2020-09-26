@@ -11,22 +11,31 @@
 </template>
 
 <script>
+import axios from "axios";
+import store from "./store";
 import AddTodo from "./components/AddTodo";
 import Todos from "./components/Todos";
-import axios from "axios";
+
+import { createNamespacedHelpers } from "vuex";
+const { mapState } = createNamespacedHelpers("my-module");
 
 export default {
   name: "App",
   components: { AddTodo, Todos },
+  store,
   data() {
     return {
       todos: [],
       error: null,
     };
   },
+  computed: {
+    ...mapState({ todos1: (state) => state.todos }),
+  },
   async mounted() {
     try {
       const response = await axios.get("http://localhost:1337/todos");
+      this.$store.dispatch("SET_TODOS", response);
       this.todos = response.data;
     } catch (error) {
       this.error = error;
@@ -34,7 +43,7 @@ export default {
   },
   methods: {
     addTodo(newTodoObj) {
-      this.todos = [...this.todos, newTodoObj];
+      this.$store.dispatch("ADD_TODO", newTodoObj);
     },
     markCompleted(id) {
       this.todos = this.todos.map((todo) => {
@@ -45,7 +54,6 @@ export default {
           };
         } else return todo;
       });
-      console.log(id);
     },
     deleteTodo(todoId) {
       this.todos = this.todos.filter((todo) => todo.id !== todoId);
