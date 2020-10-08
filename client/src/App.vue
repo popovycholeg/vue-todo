@@ -35,16 +35,12 @@ export default {
   async mounted() {
     try {
       const response = await axios.get("http://localhost:1337/todos");
-      this.$store.dispatch("SET_TODOS", response);
       this.todos = response.data;
     } catch (error) {
       this.error = error;
     }
   },
   methods: {
-    addTodo(newTodoObj) {
-      this.$store.dispatch("ADD_TODO", newTodoObj);
-    },
     markCompleted(id) {
       this.todos = this.todos.map((todo) => {
         if (todo.id === id) {
