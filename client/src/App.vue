@@ -1,10 +1,7 @@
 <template>
   <div id="app">
     <h1>Todo Vue app</h1>
-    <AddTodo
-      :todos="todos"
-      @add-todo="addTodo"
-    />
+    <AddTodo :todos="todos" @add-todo="addTodo" />
     <Todos
       :todos="todos"
       @mark-comleted="markCompleted"
@@ -24,28 +21,22 @@ export default {
   components: { AddTodo, Todos },
   setup() {
     const store = useStore();
-    const todos = computed(() => store?.state?.todos);
+    const todos = computed(() => store.state.todos);
     onMounted(() => {
       store.dispatch("onFetchTodos");
     });
+
+    const addNewTodo = (e) => {
+      e.preventDefault();
+      store.dispatch("onAddTodo", {
+        title: title.value,
+      });
+      title.value = "";
+    };
     return {
       todos,
+      // addNewTodo
     };
-  },
-  methods: {
-    markCompleted(id) {
-      this.todos = this.todos.map((todo) => {
-        if (todo.id === id) {
-          return {
-            ...todo,
-            completed: !todo.completed,
-          };
-        } else return todo;
-      });
-    },
-    deleteTodo(todoId) {
-      this.todos = this.todos.filter((todo) => todo.id !== todoId);
-    },
   },
 };
 </script>
