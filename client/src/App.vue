@@ -26,13 +26,13 @@ export default {
       store.dispatch("onFetchTodos");
     });
 
-    const addNewTodo = (e) => {
-      e.preventDefault();
-      store.dispatch("onAddTodo", {
-        title: title.value,
-      });
-      title.value = "";
-    };
+    // const addNewTodo = (e) => {
+    //   e.preventDefault();
+    //   store.dispatch("onAddTodo", {
+    //     title: title.value,
+    //   });
+    //   title.value = "";
+    // };
     return {
       todos,
       // addNewTodo
