@@ -1,5 +1,6 @@
 import Vuex from "vuex";
 import axios from "axios";
+
 const BASE_URL = "http://localhost:1337";
 
 const ACTION_TYPES = {

@@ -3,5 +3,5 @@ import App from "./App.vue";
 import store from "./store";
 
 createApp(App)
-  .mount("#app")
-  .use(store);
+  .use(store)
+  .mount("#app");

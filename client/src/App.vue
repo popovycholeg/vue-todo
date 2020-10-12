@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <h1>Todo Vue app</h1>
-    <AddTodo :todos="todos" @add-todo="addTodo" />
+    <AddTodo
+      :todos="todos"
+      @add-todo="addTodo"
+    />
     <Todos
       :todos="todos"
       @mark-comleted="markCompleted"
@@ -11,34 +14,23 @@
 </template>
 
 <script>
-import axios from "axios";
-import store from "./store";
 import AddTodo from "./components/AddTodo";
 import Todos from "./components/Todos";
-
-import { createNamespacedHelpers } from "vuex";
-const { mapState } = createNamespacedHelpers("my-module");
+import { useStore } from "vuex";
+import { computed, onMounted } from "vue";
 
 export default {
   name: "App",
   components: { AddTodo, Todos },
-  store,
-  data() {
+  setup() {
+    const store = useStore();
+    const todos = computed(() => store?.state?.todos);
+    onMounted(() => {
+      store.dispatch("onFetchTodos");
+    });
     return {
-      todos: [],
-      error: null,
+      todos,
     };
-  },
-  computed: {
-    ...mapState({ todos1: (state) => state.todos }),
-  },
-  async mounted() {
-    try {
-      const response = await axios.get("http://localhost:1337/todos");
-      this.todos = response.data;
-    } catch (error) {
-      this.error = error;
-    }
   },
   methods: {
     markCompleted(id) {
