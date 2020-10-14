@@ -13,43 +13,25 @@
 <script>
 import AddTodo from "./components/AddTodo";
 import Todos from "./components/Todos";
-import axios from "axios";
+import { useStore } from "vuex";
+import { computed, onMounted } from "vue";
 
 export default {
   name: "App",
-  components: { AddTodo, Todos },
-  data() {
+  components: {
+    AddTodo,
+    Todos,
+  },
+  setup() {
+    const store = useStore();
+    const todos = computed(() => store.state.todos);
+    onMounted(() => {
+      store.dispatch("onFetchTodos");
+    });
+
     return {
-      todos: [],
-      error: null,
+      todos,
     };
-  },
-  async mounted() {
-    try {
-      const response = await axios.get("http://localhost:1337/todos");
-      this.todos = response.data;
-    } catch (error) {
-      this.error = error;
-    }
-  },
-  methods: {
-    addTodo(newTodoObj) {
-      this.todos = [...this.todos, newTodoObj];
-    },
-    markCompleted(id) {
-      this.todos = this.todos.map((todo) => {
-        if (todo.id === id) {
-          return {
-            ...todo,
-            completed: !todo.completed,
-          };
-        } else return todo;
-      });
-      console.log(id);
-    },
-    deleteTodo(todoId) {
-      this.todos = this.todos.filter((todo) => todo.id !== todoId);
-    },
   },
 };
 </script>

@@ -3,6 +3,9 @@ export default {
     todos: [],
   },
   mutations: {
+    STATE_SET_TODOS(state, payload) {
+      state = payload;
+    },
     STATE_ADD_TODO(state, tdo) {
       state.todos.push(tdo);
     },
@@ -11,6 +14,9 @@ export default {
     },
   },
   actions: {
+    SET_TODOS(contex, payload) {
+      contex.commit(contex, payload);
+    },
     ADD_TODO(context, tdo) {
       context.commit("STATE_ADD_TODO", tdo);
     },

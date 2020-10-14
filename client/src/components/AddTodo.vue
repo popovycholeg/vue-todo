@@ -1,37 +1,31 @@
 <template>
   <div>
-    <form @submit="addTodo">
+    <form @submit="addNewTodo">
       <input v-model="title" type="text" name="title" />
       <button type="submit">Add</button>
     </form>
   </div>
 </template>
 <script>
+import { ref } from "vue";
+import { useStore } from "vuex";
+
 export default {
   name: "AddTodo",
-  props: {
-    todos: {
-      type: Array,
-      required: true,
-      default: () => [],
-    },
-  },
-  data() {
-    return {
-      title: "",
-    };
-  },
-  methods: {
-    addTodo(e) {
+  setup() {
+    const store = useStore();
+    const title = ref("");
+    const addNewTodo = (e) => {
       e.preventDefault();
-      const newTodoObj = {
-        id: this.todos.length + 1,
-        title: this.title,
-        completed: false,
-      };
-      this.$emit("add-todo", newTodoObj);
-      this.title = "";
-    },
+      store.dispatch("onAddTodo", {
+        title: title.value,
+      });
+      title.value = "";
+    };
+    return {
+      title,
+      addNewTodo,
+    };
   },
 };
 </script>
