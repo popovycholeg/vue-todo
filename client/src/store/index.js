@@ -27,15 +27,24 @@ export default Vuex.createStore({
   },
   actions: {
     onFetchTodos: async ({ commit }) => {
-      const response = await axios.get(`${BASE_URL}/todos`);
+      const response = await axios
+        .get(`${BASE_URL}/todos`)
+        .catch((error) => console.log(error));
+
       commit(ACTION_TYPES.fetchTodos, response.data);
     },
     onAddTodo: async ({ commit }, title) => {
-      const response = await axios.post(`${BASE_URL}/todos`, {
-        title,
-        completed: false,
-      });
-      console.log(response);
+      const response = await axios
+        .post(
+          `${BASE_URL}/todos`,
+          JSON.stringify({
+            title,
+            completed: false,
+            user: 1,
+          })
+        )
+        .catch((error) => console.log(error));
+
       commit(ACTION_TYPES.addTodo, response.data);
     },
   },

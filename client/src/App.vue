@@ -18,7 +18,10 @@ import { computed, onMounted } from "vue";
 
 export default {
   name: "App",
-  components: { AddTodo, Todos },
+  components: {
+    AddTodo,
+    Todos,
+  },
   setup() {
     const store = useStore();
     const todos = computed(() => store.state.todos);
@@ -26,16 +29,8 @@ export default {
       store.dispatch("onFetchTodos");
     });
 
-    // const addNewTodo = (e) => {
-    //   e.preventDefault();
-    //   store.dispatch("onAddTodo", {
-    //     title: title.value,
-    //   });
-    //   title.value = "";
-    // };
     return {
       todos,
-      // addNewTodo
     };
   },
 };
