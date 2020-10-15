@@ -35,15 +35,13 @@ export default Vuex.createStore({
     },
     onAddTodo: async ({ commit }, title) => {
       const response = await axios
-        .post(
-          `${BASE_URL}/todos`,
-          JSON.stringify({
-            title,
-            completed: false,
-            user: 1,
-          })
-        )
+        .post(`${BASE_URL}/todos`, {
+          title,
+          completed: false,
+          user: 1,
+        })
         .catch((error) => console.log(error));
+      console.log(title);
 
       commit(ACTION_TYPES.addTodo, response.data);
     },

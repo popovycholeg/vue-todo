@@ -17,9 +17,9 @@ export default {
     const title = ref("");
     const addNewTodo = (e) => {
       e.preventDefault();
-      store.dispatch("onAddTodo", {
-        title: title.value,
-      });
+      store.dispatch("onAddTodo", 
+        title.value,
+      );
       title.value = "";
     };
     return {
