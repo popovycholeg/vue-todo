@@ -53,5 +53,12 @@ export default Vuex.createStore({
         .catch((error) => console.log(error));
       commit(ACTION_TYPES.deleteTodo, id);
     },
+    onUpdateTodo: async ({ commit }, todo) => {
+      console.log(todo);
+      const response = await axios
+        .put(`${BASE_URL}/todos/${todo.id}`, todo)
+        .catch((error) => console.log(error));
+      commit(ACTION_TYPES.updateTodo, response.data);
+    },
   },
 });

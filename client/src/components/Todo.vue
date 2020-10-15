@@ -1,6 +1,6 @@
 <template>
   <div :class="{ completed: todo.completed }">
-    <p>{{ todo.title }}</p>
+    <p @click="updateTodo(todo)">{{ todo.title }}</p>
     <button @click="deleteTodo(todo.id)">Delete</button>
   </div>
 </template>
@@ -16,17 +16,19 @@ export default {
     const deleteTodo = (id) => {
       store.dispatch("onDeleteTodo", id);
     };
-    // const updateTodo = (todo) => {
-    //   const updatedTodo = {
-    //     title: todo.title,
-    //     id: todo.id,
-    //     completed: !todo.completed,
-    //   };
-    //   store.dispatch("onUpdateTodo", updatedTodo);
-    // };
+
+    const updateTodo = (todo) => {
+      const updatedTodo = {
+        title: todo.title,
+        id: todo.id,
+        completed: !todo.completed,
+      };
+      store.dispatch("onUpdateTodo", updatedTodo);
+    };
 
     return {
       deleteTodo,
+      updateTodo
     };
   },
 };
