@@ -47,5 +47,11 @@ export default Vuex.createStore({
 
       commit(ACTION_TYPES.addTodo, response.data);
     },
+    onDeleteTodo: ({ commit }, id) => {
+      axios
+        .delete(`${BASE_URL}/todos/${id}`)
+        .catch((error) => console.log(error));
+      commit(ACTION_TYPES.deleteTodo, id);
+    },
   },
 });

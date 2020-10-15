@@ -1,17 +1,33 @@
 <template>
   <div :class="{ completed: todo.completed }">
-    <p @click="markComplete">{{ todo.title }}</p>
-    <button @click="$emit('delete-todo', todo.id)">Delete</button>
+    <p>{{ todo.title }}</p>
+    <button @click="deleteTodo(todo.id)">Delete</button>
   </div>
 </template>
 <script>
+import { useStore } from "vuex";
+
 export default {
   name: "Todo",
   props: ["todo"],
-  methods: {
-    markComplete() {
-      this.$emit("mark-comleted", this.todo.id);
-    },
+  setup() {
+    const store = useStore();
+
+    const deleteTodo = (id) => {
+      store.dispatch("onDeleteTodo", id);
+    };
+    // const updateTodo = (todo) => {
+    //   const updatedTodo = {
+    //     title: todo.title,
+    //     id: todo.id,
+    //     completed: !todo.completed,
+    //   };
+    //   store.dispatch("onUpdateTodo", updatedTodo);
+    // };
+
+    return {
+      deleteTodo,
+    };
   },
 };
 </script>

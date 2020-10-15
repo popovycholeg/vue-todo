@@ -5,8 +5,6 @@
       <li v-for="todo in todos" :key="todo.id">
         <Todo
           :todo="todo"
-          @mark-comleted="$emit('mark-comleted', todo.id)"
-          @delete-todo="$emit('delete-todo', todo.id)"
         />
       </li>
     </ul>
@@ -15,17 +13,24 @@
 
 <script>
 import Todo from "./Todo";
+import { useStore } from "vuex";
+import { computed, onMounted } from "vue";
+
 export default {
   name: "Todos",
-  components: {
-    Todo,
+  setup() {
+    const store = useStore();
+    const todos = computed(() => store.state.todos);
+    onMounted(() => {
+      store.dispatch("onFetchTodos");
+    });
+
+    return {
+      todos,
+    };
   },
-  props: {
-    todos: {
-      type: Array,
-      required: true,
-      default: () => [],
-    },
+   components: {
+    Todo,
   },
 };
 </script>
