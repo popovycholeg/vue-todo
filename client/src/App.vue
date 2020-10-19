@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import TodosPage from "./routes/TodosPage";
+import TodosPage from "./pages/TodosPage";
 
 export default {
   name: "App",

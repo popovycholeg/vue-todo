@@ -1,7 +1,12 @@
 <template>
   <div>
     <form @submit="addNewTodo">
-      <input v-model="title" type="text" name="title" />
+      <input
+        v-model="title"
+        type="text"
+        name="title"
+        class="input-group-field"
+      />
       <button type="submit">Add</button>
     </form>
   </div>
@@ -17,9 +22,7 @@ export default {
     const title = ref("");
     const addNewTodo = (e) => {
       e.preventDefault();
-      store.dispatch("onAddTodo", 
-        title.value,
-      );
+      store.dispatch("onAddTodo", title.value);
       title.value = "";
     };
     return {
@@ -29,4 +32,8 @@ export default {
   },
 };
 </script>
-<style scoped></style>
+<style scoped>
+.input-group-field {
+  
+}
+</style>
