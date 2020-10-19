@@ -33,7 +33,5 @@ export default {
 };
 </script>
 <style scoped>
-.input-group-field {
-  
-}
+
 </style>
