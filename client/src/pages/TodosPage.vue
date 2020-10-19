@@ -1,9 +1,9 @@
 <template>
-<div id="app">
-  <h1>Todo Vue app</h1>
-  <AddTodo />
-  <Todos />
-</div>
+  <div id="app">
+    <h1>Todo Vue app</h1>
+    <AddTodo />
+    <Todos />
+  </div>
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 <template>
-<div id="app">
-  <TodosPage />
-</div>
+  <div id="app">
+    <TodosPage />
+  </div>
 </template>
 
 <script>
@@ -16,7 +16,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../node_modules/bootstrap/scss/bootstrap.scss';
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

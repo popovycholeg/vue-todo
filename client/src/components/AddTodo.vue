@@ -1,23 +1,28 @@
 <template>
   <div>
-    <form @submit="addNewTodo">
-      <input
-        v-model="title"
-        type="text"
-        name="title"
-        class="input-group-field"
-      />
-      <span class="input-group-button">
-          <button @click="addTask" 
-                  class="btn btn-primary"
-                  type="submit"
-          >
-            <i class="fa fa-plus"></i> Add
+    <form
+      class="mb-3 mt-3 w-100 form"
+      @submit="addNewTodo"
+    >
+      <div class="input-group w-50 inputWrapper">
+        <input
+          v-model="title"
+          type="text"
+          class="form-control"
+          placeholder="Recipient's username"
+          aria-label="Recipient's username"
+          aria-describedby="basic-addon2"
+        />
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="submit">
+            Add todo
           </button>
-        </span>
+        </div>
+      </div>
     </form>
   </div>
 </template>
+
 <script>
 import { ref } from "vue";
 import { useStore } from "vuex";
@@ -39,6 +44,11 @@ export default {
   },
 };
 </script>
-<style scoped>
 
+<style scoped>
+.form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 </style>
