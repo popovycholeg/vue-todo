@@ -7,7 +7,14 @@
         name="title"
         class="input-group-field"
       />
-      <button type="submit">Add</button>
+      <span class="input-group-button">
+          <button @click="addTask" 
+                  class="btn btn-primary"
+                  type="submit"
+          >
+            <i class="fa fa-plus"></i> Add
+          </button>
+        </span>
     </form>
   </div>
 </template>
