@@ -12,9 +12,12 @@
           placeholder="Recipient's username"
           aria-label="Recipient's username"
           aria-describedby="basic-addon2"
-        />
+        >
         <div class="input-group-append">
-          <button class="btn btn-primary" type="submit">
+          <button 
+            class="btn btn-primary" 
+            type="submit"
+          >
             Add todo
           </button>
         </div>

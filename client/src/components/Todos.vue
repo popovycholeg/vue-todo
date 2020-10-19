@@ -1,11 +1,13 @@
 <template>
-  <div>
+  <div class="todosWrapper">
     <h2>Todos</h2>
-    <ul>
-      <li v-for="todo in todos" :key="todo.id">
-        <Todo
-          :todo="todo"
-        />
+    <ul class="list-group w-50">
+      <li 
+        v-for="todo in todos" 
+        :key="todo.id"
+        class="list-group-item"
+      >
+        <Todo :todo="todo" />
       </li>
     </ul>
   </div>
@@ -18,6 +20,9 @@ import { computed, onMounted } from "vue";
 
 export default {
   name: "Todos",
+  components: {
+    Todo,
+  },
   setup() {
     const store = useStore();
     const todos = computed(() => store.state.todos);
@@ -29,9 +34,14 @@ export default {
       todos,
     };
   },
-   components: {
-    Todo,
-  },
 };
 </script>
-<style scoped></style>
+
+<style scoped>
+.todosWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+</style>
