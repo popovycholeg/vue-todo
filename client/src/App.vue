@@ -1,20 +1,16 @@
 <template>
 <div id="app">
-  <h1>Todo Vue app</h1>
-  <AddTodo />
-  <Todos />
+  <TodosPage />
 </div>
 </template>
 
 <script>
-import AddTodo from "./components/AddTodo";
-import Todos from "./components/Todos";
+import TodosPage from "./routes/TodosPage";
 
 export default {
   name: "App",
   components: {
-    AddTodo,
-    Todos,
+    TodosPage,
   },
 };
 </script>
