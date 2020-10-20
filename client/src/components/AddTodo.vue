@@ -9,8 +9,8 @@
           v-model="title"
           type="text"
           class="form-control"
-          placeholder="Recipient's username"
-          aria-label="Recipient's username"
+          placeholder="Your todo"
+          aria-label="Your todo"
           aria-describedby="basic-addon2"
         >
         <div class="input-group-append">
@@ -18,7 +18,7 @@
             class="btn btn-primary" 
             type="submit"
           >
-            Add todo
+            Add
           </button>
         </div>
       </div>

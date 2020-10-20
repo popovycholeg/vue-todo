@@ -1,7 +1,9 @@
 <template>
-  <div :class="{ completed: todo.completed }">
-    <p @click="updateTodo(todo)">{{ todo.title }}</p>
-    <button @click="deleteTodo(todo.id)">Delete</button>
+  <div class="todoWrapper" @click="updateTodo(todo)">
+    <p :class="{ completed: todo.completed }">
+      {{ todo.title }}
+    </p>
+    <button @click="deleteTodo(todo.id)" class="btn btn-danger">Delete</button>
   </div>
 </template>
 <script>
@@ -28,7 +30,7 @@ export default {
 
     return {
       deleteTodo,
-      updateTodo
+      updateTodo,
     };
   },
 };
@@ -36,5 +38,12 @@ export default {
 <style scoped>
 .completed {
   text-decoration: line-through;
+}
+
+.todoWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>
