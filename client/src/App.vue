@@ -1,18 +1,11 @@
 <template>
-  <div id="app">
-    <TodosPage />
-  </div>
+  <router-view />
 </template>
 
 <script>
-import TodosPage from "./pages/TodosPage";
-
 export default {
-  name: "App",
-  components: {
-    TodosPage,
-  },
-};
+ 
+}
 </script>
 
 <style lang="scss">
