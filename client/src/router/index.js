@@ -3,11 +3,12 @@ import TodosPage from "../pages/TodosPage.vue";
 import LoginPage from "../pages/LoginPage.vue";
 
 const routes = [
-  {
-    path: "/",
-    name: "Home",
-    component: TodosPage,
-  },
+  // TODO: fix default route
+  // {
+  //   path: "/",
+  //   name: "Home",
+  //   component: TodosPage,
+  // },
   {
     path: "/todos",
     name: "Todos",
