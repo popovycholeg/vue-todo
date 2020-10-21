@@ -1,6 +1,6 @@
 <template>
   <div class="todoWrapper" @click="updateTodo(todo)">
-    <p :class="{ completed: todo.completed }">
+    <p class="text" :class="{ completed: todo.completed }">
       {{ todo.title }}
     </p>
     <button @click="deleteTodo(todo.id)" class="btn btn-danger">Delete</button>
@@ -45,5 +45,9 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+.text {
+  margin: 0;
 }
 </style>
