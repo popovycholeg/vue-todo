@@ -10,7 +10,7 @@ const routes = [
   },
   {
     path: "/todos",
-    name: "Home",
+    name: "Todos",
     component: TodosPage,
   },
   {
