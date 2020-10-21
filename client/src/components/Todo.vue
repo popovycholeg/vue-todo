@@ -3,7 +3,7 @@
     <p class="text" :class="{ completed: todo.completed }">
       {{ todo.title }}
     </p>
-    <button @click="deleteTodo(todo.id)" class="btn btn-danger">Delete</button>
+    <button class="btn btn-danger" @click="deleteTodo(todo.id)">Delete</button>
   </div>
 </template>
 <script>
