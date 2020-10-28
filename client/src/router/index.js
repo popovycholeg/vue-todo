@@ -4,11 +4,11 @@ import LoginPage from "../pages/LoginPage.vue";
 
 const routes = [
   // TODO: fix default route
-  // {
-  //   path: "/",
-  //   name: "Home",
-  //   component: TodosPage,
-  // },
+  {
+    path: "/",
+    name: "Home",
+    component: TodosPage,
+  },
   {
     path: "/todos",
     name: "Todos",
