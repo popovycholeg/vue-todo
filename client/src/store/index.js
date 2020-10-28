@@ -1,7 +1,5 @@
 import Vuex from "vuex";
-import axios from "axios";
-
-export const BASE_URL = "http://localhost:1337";
+import axiosInstance, { BASE_URL } from "../axiosInstance";
 
 export const ACTION_TYPES = {
   fetchTodos: "fetchTodos",
@@ -27,14 +25,14 @@ export default Vuex.createStore({
   },
   actions: {
     onFetchTodos: async ({ commit }) => {
-      const response = await axios
+      const response = await axiosInstance
         .get(`${BASE_URL}/todos`)
         .catch((error) => console.log(error));
 
       commit(ACTION_TYPES.fetchTodos, response.data);
     },
     onAddTodo: async ({ commit }, title) => {
-      const response = await axios
+      const response = await axiosInstance
         .post(`${BASE_URL}/todos`, {
           title,
           completed: false,
@@ -46,14 +44,14 @@ export default Vuex.createStore({
       commit(ACTION_TYPES.addTodo, response.data);
     },
     onDeleteTodo: ({ commit }, id) => {
-      axios
+      axiosInstance
         .delete(`${BASE_URL}/todos/${id}`)
         .catch((error) => console.log(error));
       commit(ACTION_TYPES.deleteTodo, id);
     },
     onUpdateTodo: async ({ commit }, todo) => {
       console.log(todo);
-      const response = await axios
+      const response = await axiosInstance
         .put(`${BASE_URL}/todos/${todo.id}`, todo)
         .catch((error) => console.log(error));
       commit(ACTION_TYPES.updateTodo, response.data);

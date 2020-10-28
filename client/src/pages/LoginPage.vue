@@ -32,7 +32,7 @@
 import axios from "axios";
 import { ref } from "vue";
 import router from "../router";
-import { BASE_URL } from "../store";
+import { BASE_URL } from "../axiosInstance";
 
 export default {
   name: "LoginPage",

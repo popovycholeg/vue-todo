@@ -3,7 +3,6 @@ import TodosPage from "../pages/TodosPage.vue";
 import LoginPage from "../pages/LoginPage.vue";
 
 const routes = [
-  // TODO: fix default route
   {
     path: "/",
     name: "Home",
