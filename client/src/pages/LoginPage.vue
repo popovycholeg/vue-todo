@@ -24,13 +24,14 @@
         <button type="submit" class="btn btn-primary btn-block">Log in</button>
       </div>
     </form>
-    <p class="text-center"><a href="#">Create an Account</a></p>
+    <!-- <p class="text-center"><a href="#">Create an Account</a></p> -->
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import { ref } from "vue";
+import router from "../router";
 import { BASE_URL } from "../store";
 
 export default {
@@ -42,12 +43,14 @@ export default {
       e.preventDefault();
 
       axios
-        .post(`${BASE_URL}/auth/local`, { // TODO: move to vuex
+        .post(`${BASE_URL}/auth/local`, {
+          // TODO: move to vuex
           identifier: email.value,
           password: password.value,
         })
-        .then(({data}) => {
-          localStorage.setItem('token', data.jwt);
+        .then(({ data }) => {
+          localStorage.setItem("token", data.jwt);
+          router.push("/");
         })
         .catch((err) => console.log(err));
     };
