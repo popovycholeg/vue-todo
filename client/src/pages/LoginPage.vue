@@ -1,9 +1,10 @@
 <template>
   <div class="login-form">
-    <form method="post">
+    <form @submit="login">
       <h2 class="text-center">Log in</h2>
       <div class="form-group">
         <input
+          v-model="email"
           type="text"
           class="form-control"
           placeholder="Username"
@@ -12,6 +13,7 @@
       </div>
       <div class="form-group">
         <input
+          v-model="password"
           type="password"
           class="form-control"
           placeholder="Password"
@@ -21,26 +23,37 @@
       <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block">Log in</button>
       </div>
-      <div class="clearfix">
-        <label class="pull-left checkbox-inline">
-          <input type="checkbox"> Remember me
-        </label>
-      </div>
     </form>
     <p class="text-center"><a href="#">Create an Account</a></p>
   </div>
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
+import { ref } from "vue";
+import { BASE_URL } from "../store";
 
 export default {
   name: "LoginPage",
   setup() {
-    // const login = () => {
-    //   // axios.post('')
-    // }
-  }
+    const email = ref("");
+    const password = ref("");
+    const login = (e) => {
+      e.preventDefault();
+
+      axios
+        .post(`${BASE_URL}/auth/local`, { // TODO: move to vuex
+          identifier: email.value,
+          password: password.value,
+        })
+        .then(({data}) => {
+          localStorage.setItem('token', data.jwt);
+        })
+        .catch((err) => console.log(err));
+    };
+
+    return { login, password, email };
+  },
 };
 </script>
 
