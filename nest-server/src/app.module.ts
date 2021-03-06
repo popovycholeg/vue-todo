@@ -3,12 +3,13 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { TodosModule } from './todos/todos.module';
-import { CONNECTION_STRING } from './config/db';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
-    MongooseModule.forRoot(CONNECTION_STRING),
+    ConfigModule.forRoot({ isGlobal: true }),
+    MongooseModule.forRoot(
+      `mongodb+srv://${process.env.DB_USER_NAME}:${process.env.DB_PASSWORD}@${process.env.DB_PROVIDER}/${process.env.DB_NAME}?retryWrites=true&w=majority`,
+    ),
     TodosModule,
   ],
   controllers: [AppController],
