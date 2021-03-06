@@ -9,7 +9,12 @@ export class TodosService {
   constructor(@InjectModel(Todo.name) private todoModel: Model<TodoDocument>) {}
 
   async getAll(): Promise<Todo[]> {
-    return this.todoModel.find().exec();
+    const todos = await this.todoModel.find().exec();
+    return todos.map((todo) => ({
+      // TODO: alias
+      ...todo,
+      id: todo._id,
+    }));
   }
 
   async getById(id: string): Promise<Todo> {

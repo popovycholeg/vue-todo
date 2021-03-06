@@ -3,6 +3,8 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   Post,
   Put,
@@ -10,7 +12,7 @@ import {
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { Todo } from './schemes/todos.schema';
 import { TodosService } from './todos.service';
-
+// TODO: handle errors
 @Controller('todos')
 export class TodosController {
   constructor(private readonly todosService: TodosService) {}
@@ -25,6 +27,7 @@ export class TodosController {
   }
 
   @Post()
+  @HttpCode(HttpStatus.CREATED)
   createTodo(@Body() body: CreateTodoDto): Promise<Todo> {
     return this.todosService.create(body);
   }
