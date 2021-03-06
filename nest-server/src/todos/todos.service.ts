@@ -8,12 +8,24 @@ import { Todo, TodoDocument } from './schemes/todos.schema';
 export class TodosService {
   constructor(@InjectModel(Todo.name) private todoModel: Model<TodoDocument>) {}
 
-  async getAllTodos(): Promise<Todo[]> {
+  async getAll(): Promise<Todo[]> {
     return this.todoModel.find().exec();
   }
 
-  async createTodo(todoCreateDto: CreateTodoDto): Promise<Todo> {
+  async getById(id: string): Promise<Todo> {
+    return this.todoModel.findById(id);
+  }
+
+  async create(todoCreateDto: CreateTodoDto): Promise<Todo> {
     const todo = new this.todoModel(todoCreateDto);
     return todo.save();
+  }
+
+  async delete(id: string) {
+    return this.todoModel.findByIdAndRemove(id);
+  }
+
+  async upadte(todoDto: CreateTodoDto, id: string): Promise<Todo> {
+    return this.todoModel.findByIdAndUpdate(id, todoDto, { new: true });
   }
 }
