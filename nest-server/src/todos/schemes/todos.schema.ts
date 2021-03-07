@@ -15,8 +15,6 @@ export class Todo {
 const TodoSchema = SchemaFactory.createForClass(Todo);
 TodoSchema.method('transform', function () {
   const obj = this.toObject();
-
-  //Rename fields
   obj.id = obj._id;
   delete obj._id;
 
