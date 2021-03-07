@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
@@ -26,7 +27,7 @@ export class TodosService {
 
   async create(todoCreateDto: CreateTodoDto): Promise<Todo> {
     const todo = new this.todoModel(todoCreateDto);
-    return todo.save();
+    return todo.save().then((todo) => todo.transform());
   }
 
   async delete(id: string) {
@@ -34,6 +35,8 @@ export class TodosService {
   }
 
   async upadte(todoDto: CreateTodoDto, id: string): Promise<Todo> {
-    return this.todoModel.findByIdAndUpdate(id, todoDto, { new: true });
+    return this.todoModel
+      .findByIdAndUpdate(id, todoDto, { new: true })
+      .then((todo) => todo.transform());
   }
 }
