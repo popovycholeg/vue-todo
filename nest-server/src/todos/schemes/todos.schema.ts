@@ -10,15 +10,17 @@ export class Todo {
 
   @Prop()
   completed: boolean;
+
+  transform: () => Todo;
 }
 
 const TodoSchema = SchemaFactory.createForClass(Todo);
-TodoSchema.method('transform', function () {
+TodoSchema.methods.transform = function () {
   const obj = this.toObject();
   obj.id = obj._id;
   delete obj._id;
 
   return obj;
-});
+};
 
 export default TodoSchema;
